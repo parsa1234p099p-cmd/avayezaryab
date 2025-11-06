@@ -3,364 +3,426 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>آکادمی موسیقی آوای زریاب</title>
+  <title>آوای زریاب | آکادمی موسیقی</title>
+  <meta name="description" content="آکادمی موسیقی آوای زریاب - آموزش گیتار و آواز" />
+  <!--
+  ===================== راهنمای سریع ویرایش =====================
+  1) لوگو: فایل لوگویی که فرستادید را کنار این فایل با نام "logo.png" ذخیره کنید.
+     سپس <img id="siteLogo" src="logo.png"> همان را نشان می‌دهد.
+
+  2) رنگ‌های سازمانی: از روی لوگو ست شده‌اند. اگر لازم شد تغییر دهید:
+     :root { --primary:#0f1f35; --accent:#c4a255; --ink:#0b1020; --bg:#0a0f1c }
+
+  3) عکس/ویدیوها را کجا بگذارم؟
+     - پوشه‌ای مثل media/ بسازید و فایل‌ها را داخلش بریزید (یا لینک مستقیم بدهید).
+     - سپس در پایین، در بخش "// === داده‌ها ==="، آرایه photos و videos هر استاد را ویرایش کنید.
+       مثال: photos:["media/soheil_1.jpg","media/soheil_2.jpg"], videos:["media/soheil_1.mp4"]
+     - هر هفته فقط همان آرایه‌ها را آپدیت/اضافه کنید. بلافاصله در گالری‌ها دیده می‌شود.
+
+  4) چندصفحه‌ای بودن در فایل تکی:
+     - با روتینگ هَشی (#home, #teachers, #gallery, #contact) شبیه چند صفحه عمل می‌کند.
+
+  5) صدا و انیمیشن:
+     - صدای نت گیتار هنگام اسکرول فعال است و با دکمه فوتر قطع/وصل می‌شود.
+     - افکت‌های حرکتی و پارالاکس و لایت‌باکس برای عکس/ویدیو افزوده شد.
+  =================================================================
+  -->
+
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;600;800&display=swap" rel="stylesheet">
+
   <style>
     :root{
-      --navy:#1a2533;     /* برگرفته از رنگ آبیِ لوگو */
-      --navy-2:#0e1621;   /* سایه تیره‌تر برای پس‌زمینه */
-      --gold:#caa55e;     /* طلاییِ لوگو */
-      --text:#e9eef5;
-      --muted:#aab6c5;
-      --card:#101823;
-      --shadow:0 10px 30px rgba(0,0,0,.25);
-      --radius:18px;
+      --primary:#0f1f35; /* سرمه‌ای تیره */
+      --accent:#c4a255;  /* طلایی */
+      --ink:#0b1020;     /* نزدیک به پس‌زمینه لوگو */
+      --bg:#0a0f1c;
+      --muted:#c9d1d9;
+      --card:#10192b;
+      --glass:rgba(15,25,43,.55)
     }
     *{box-sizing:border-box}
-    html,body{margin:0;padding:0;background:var(--navy-2);color:var(--text);font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Noto Naskh Arabic", "Noto Sans Arabic", Tahoma, sans-serif;}
-    a{color:var(--gold);text-decoration:none}
-    img{max-width:100%;height:auto;display:block}
-
-    /* Header / Nav */
-    header{position:sticky;top:0;z-index:50;background:rgba(13,20,30,.7);backdrop-filter: blur(8px);border-bottom:1px solid rgba(202,165,94,.2)}
-    .nav{max-width:1200px;margin:auto;display:flex;align-items:center;justify-content:space-between;padding:10px 16px;}
-    .brand{display:flex;gap:10px;align-items:center}
-    .brand img{height:44px;width:auto;filter: drop-shadow(0 2px 6px rgba(0,0,0,.4));}
-    .brand .title{font-weight:800;letter-spacing:.5px}
-    .title small{display:block;font-weight:500;color:var(--muted);font-size:12px}
-    .menu{display:flex;gap:18px;align-items:center}
-    .menu a{padding:10px 12px;border-radius:12px;}
-    .menu a:hover{background:rgba(202,165,94,.12)}
-
-    /* Mobile nav */
-    .menu-toggle{display:none;background:transparent;border:1px solid rgba(202,165,94,.35);color:var(--text);padding:8px 12px;border-radius:12px}
-    @media(max-width:880px){
-      .menu{display:none;position:absolute;right:0;left:0;top:66px;background:rgba(13,20,30,.95);padding:10px 12px;border-bottom:1px solid rgba(202,165,94,.2)}
-      .menu.open{display:flex;flex-wrap:wrap}
-      .menu-toggle{display:inline-flex}
+    html,body{height:100%; scroll-behavior:smooth}
+    body{
+      margin:0; font-family:"Vazirmatn",system-ui,Segoe UI,Arial; background:radial-gradient(1200px 600px at 10% -10%, rgba(196,162,85,.15), transparent),
+      radial-gradient(900px 500px at 100% 0%, rgba(21,34,60,.75), transparent), var(--bg); color:#eef3f8;
+      line-height:1.7; overflow-y:overlay;
     }
+    a{color:var(--accent); text-decoration:none}
+    img{max-width:100%; height:auto}
 
-    /* Sections */
-    section{max-width:1200px;margin:0 auto;padding:64px 16px}
-    h1,h2{margin:0 0 16px}
-    h1{font-size:clamp(28px,4vw,44px)}
-    h2{font-size:clamp(22px,3vw,32px);}
-    p{line-height:1.9;color:#d7dfeb}
+    /* پارالاکس تزئینی */
+    .blob{position:fixed; inset:auto auto -120px -120px; width:42vmax; height:42vmax; background:radial-gradient(circle at 30% 30%, rgba(196,162,85,.3), rgba(196,162,85,0)); filter:blur(40px); pointer-events:none; z-index:0}
+    .blob2{left:auto; right:-140px; bottom:-140px; background:radial-gradient(circle at 70% 20%, rgba(14,24,44,.9), rgba(14,24,44,0)); width:50vmax; height:50vmax}
 
-    /* Hero */
-    .hero{display:grid;grid-template-columns:1.2fr .8fr;gap:24px;align-items:center}
-    .hero-card{background:linear-gradient(145deg, rgba(26,37,51,.6), rgba(16,24,35,.8));border:1px solid rgba(202,165,94,.2);border-radius:var(--radius);padding:28px;box-shadow:var(--shadow)}
-    .hero .cta{display:flex;gap:12px;margin-top:18px;flex-wrap:wrap}
-    .btn{background:var(--gold);border:none;color:#121620;padding:12px 18px;border-radius:14px;font-weight:800;cursor:pointer}
-    .btn.secondary{background:transparent;border:1px solid var(--gold);color:var(--text)}
+    /* هدر */
+    header{
+      position:sticky; top:0; z-index:50; backdrop-filter: blur(10px);
+      background: linear-gradient(180deg, rgba(10,15,28,.85), rgba(10,15,28,.4));
+      border-bottom:1px solid rgba(196,162,85,.22);
+    }
+    .container{max-width:1200px; margin:0 auto; padding:0 16px}
+    .nav{display:flex; align-items:center; justify-content:space-between; gap:16px; padding:12px 0}
+    .brand{display:flex; align-items:center; gap:12px}
+    .brand img{width:56px; height:56px; object-fit:contain}
+    .brand h1{font-size:22px; margin:0; letter-spacing:.3px}
+    nav ul{display:flex; gap:4px; list-style:none; padding:0; margin:0}
+    nav a{position:relative; display:inline-block; padding:10px 14px; border-radius:14px; color:#e9edf3}
+    nav a::after{content:""; position:absolute; inset:auto 14px -2px 14px; height:2px; background:linear-gradient(90deg,transparent, var(--accent), transparent); transform:scaleX(0); transform-origin:center; transition:transform .25s}
+    nav a.active::after, nav a:hover::after{transform:scaleX(1)}
+    nav a.active{background:var(--card); box-shadow:0 0 0 1px rgba(196,162,85,.25) inset}
+    .cta{background:var(--accent); color:#0a0f1c; font-weight:700}
 
-    .badges{display:flex;flex-wrap:wrap;gap:10px;margin-top:14px}
-    .badge{border:1px dashed rgba(202,165,94,.4);color:var(--muted);padding:6px 10px;border-radius:10px;font-size:12px}
+    /* قهرمان */
+    .hero{position:relative; display:grid; grid-template-columns:1.2fr .8fr; align-items:center; gap:24px; padding:56px 0}
+    .hero h2{font-size:40px; line-height:1.35; margin:0 0 12px}
+    .hero p{color:#c7cfdb; margin:0 0 18px}
+    .hero .card{background:var(--glass); border:1px solid rgba(196,162,85,.2); border-radius:24px; padding:16px; backdrop-filter: blur(6px)}
 
-    /* Cards grid */
-    .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
-    .card{background:var(--card);border:1px solid rgba(202,165,94,.15);border-radius:var(--radius);padding:18px;box-shadow:var(--shadow)}
-    .card h3{margin:0 0 8px}
-    .card p{margin:0}
-    @media(max-width:900px){
+    /* کارت‌ها */
+    .grid{display:grid; grid-template-columns:repeat(12,1fr); gap:16px}
+    .col-4{grid-column:span 4}
+    .col-6{grid-column:span 6}
+    .col-12{grid-column:span 12}
+    .card{background:var(--card); border:1px solid rgba(196,162,85,.18); border-radius:20px; padding:18px; box-shadow:0 10px 30px rgba(0,0,0,.2)}
+    .card h3{margin:0 0 10px}
+
+    /* انیمیشن نمایان شدن */
+    .reveal{opacity:0; transform:translateY(14px); transition:opacity .6s, transform .6s}
+    .reveal.inview{opacity:1; transform:none}
+
+    /* گالری */
+    .gallery{display:grid; grid-template-columns:repeat(auto-fill,minmax(200px,1fr)); gap:12px}
+    .gallery figure{margin:0; border-radius:16px; overflow:hidden; border:1px solid rgba(196,162,85,.15); box-shadow:0 6px 16px rgba(0,0,0,.18)}
+    .gallery video, .gallery img{display:block; width:100%; height:230px; object-fit:cover}
+    .thumb:hover{transform:scale(1.02)}
+
+    /* لایت‌باکس */
+    .lightbox{position:fixed; inset:0; display:none; align-items:center; justify-content:center; background:rgba(0,0,0,.7); z-index:100}
+    .lightbox.open{display:flex}
+    .lightbox .inner{position:relative; width:min(92vw,1100px); max-height:86vh;}
+    .lightbox .inner img, .lightbox .inner video{width:100%; max-height:86vh; object-fit:contain; background:#000; border-radius:12px}
+    .lightbox .close, .lightbox .navbtn{position:absolute; top:-44px; color:#fff; border:1px solid rgba(255,255,255,.4); background:rgba(255,255,255,.1); padding:8px 12px; border-radius:10px; cursor:pointer}
+    .lightbox .close{right:0}
+    .lightbox .navbtn.prev{left:0}
+    .lightbox .navbtn.next{left:68px}
+
+    /* استادان */
+    .teacher{display:grid; grid-template-columns:120px 1fr; gap:14px; align-items:center}
+    .teacher img.avatar{width:100%; height:120px; object-fit:cover; border-radius:18px; border:1px solid rgba(196,162,85,.25)}
+    .chips{display:flex; gap:8px; flex-wrap:wrap}
+    .chip{background:rgba(196,162,85,.15); color:#ffe9b0; border:1px dashed rgba(196,162,85,.4); border-radius:999px; padding:6px 10px; font-size:12px}
+
+    /* فوتر */
+    footer{margin-top:40px; padding:26px 0; border-top:1px solid rgba(196,162,85,.2); background:rgba(15,25,43,.5)}
+    .footerbar{display:flex; align-items:center; justify-content:space-between; gap:12px}
+    .mute-btn{background:transparent; color:#eaeef5; border:1px solid rgba(196,162,85,.4); border-radius:14px; padding:10px 14px; cursor:pointer}
+    .muted{opacity:.65}
+
+    /* سکشن‌ها */
+    section{padding:28px 0 46px; position:relative; z-index:1}
+    section h2{margin:0 0 14px; font-size:28px}
+    .lead{color:#c7cfdb}
+
+    /* پاسخ‌گرا */
+    @media (max-width: 900px){
       .hero{grid-template-columns:1fr}
-      .grid{grid-template-columns:1fr}
+      .col-4{grid-column:span 12}
+      .col-6{grid-column:span 12}
+      .teacher{grid-template-columns:90px 1fr}
+      .lightbox .close, .lightbox .navbtn{top:-50px}
     }
-
-    /* Gallery */
-    .gallery-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
-    @media(max-width:1100px){.gallery-grid{grid-template-columns:repeat(3,1fr)}}
-    @media(max-width:700px){.gallery-grid{grid-template-columns:repeat(2,1fr)}}
-    .media-item{position:relative;overflow:hidden;border-radius:14px;border:1px solid rgba(202,165,94,.2)}
-    .media-item::after{content:"◾";position:absolute;inset:auto 8px 6px 8px;color:var(--gold);opacity:.85;font-size:12px}
-    .media-item video{width:100%;height:100%;display:block}
-
-    /* Contact */
-    form{display:grid;gap:10px;max-width:680px}
-    input, textarea{background:#0d1420;color:var(--text);border:1px solid rgba(202,165,94,.25);border-radius:12px;padding:12px}
-    textarea{min-height:120px}
-    .contact-cards{display:grid;grid-template-columns:2fr 1fr;gap:18px}
-    @media(max-width:900px){.contact-cards{grid-template-columns:1fr}}
-
-    /* Footer */
-    footer{border-top:1px solid rgba(202,165,94,.2);padding:28px 16px;margin-top:40px;color:var(--muted)}
-
-    /* Floating sound toggle */
-    .sound-toggle{position:fixed;left:16px;bottom:16px;z-index:60;background:rgba(26,37,51,.85);border:1px solid rgba(202,165,94,.4);color:var(--text);padding:10px 12px;border-radius:12px;display:flex;gap:8px;align-items:center}
-    .sound-toggle[data-active="true"]{background:var(--gold);color:#121620;border-color:transparent}
   </style>
 </head>
 <body>
+  <div class="blob"></div>
+  <div class="blob blob2"></div>
+
   <header>
-    <nav class="nav">
-      <div class="brand">
-        <!-- فایل لوگو را در پوشه‌ی ریشه با نام logo.png قرار دهید -->
-        <img src="assets/logo.jpg" alt="لوگوی آوای زریاب" />
-        <div class="title">آوای زریاب<small>ACADEMY</small></div>
+    <div class="container nav">
+      <div class="brand reveal">
+        <img id="siteLogo" src="logo.jpg" alt="لوگوی آوای زریاب" />
+        <h1>آوای زریاب</h1>
       </div>
-      <button class="menu-toggle" aria-label="باز کردن منو">منو</button>
-      <div class="menu" id="menu">
-        <a href="#home">خانه</a>
-        <a href="#about">درباره ما</a>
-        <a href="#classes">کلاس‌ها</a>
-        <a href="#gallery">گالری</a>
-        <a href="#contact">تماس با ما</a>
-      </div>
-    </nav>
+      <nav class="reveal">
+        <ul>
+          <li><a href="#home" data-route>خانه</a></li>
+          <li><a href="#teachers" data-route>استادان</a></li>
+          <li><a href="#gallery" data-route>گالری</a></li>
+          <li><a href="#contact" data-route class="cta">ثبت‌نام / تماس</a></li>
+        </ul>
+      </nav>
+    </div>
   </header>
 
-  <main>
-    <!-- Hero -->
-    <section class="hero" id="home">
-      <div class="hero-card">
-        <h1>آکادمی موسیقی <span style="color:var(--gold)">آوای زریاب</span></h1>
-        <p>
-          این یک نمونهٔ اولیهٔ سبک و ریسپانسیو است تا ظاهر و حس وب‌سایت شما را نشان دهد. رنگ‌ها از لوگو برداشت شده‌اند و هر بخش قابل ویرایش است.
-        </p>
-        <div class="cta">
-          <a class="btn" href="#classes">ثبت‌نام کلاس‌ها</a>
-          <a class="btn secondary" href="#gallery">مشاهدهٔ گالری</a>
-        </div>
-        <div class="badges">
-          <span class="badge">گیتار</span>
-          <span class="badge">تئوری موسیقی</span>
-          <span class="badge">آواز</span>
-          <span class="badge">آهنگسازی</span>
-        </div>
-      </div>
-      <div class="hero-card" style="display:flex;align-items:center;justify-content:center">
-        <!-- شعار/پوستر -->
-        <img src="logo.png" alt="لوگو" style="max-height:220px;object-fit:contain"/>
-      </div>
-    </section>
-
-    <!-- About -->
-    <section id="about">
-      <h2>دربارهٔ ما</h2>
-      <div class="grid">
-        <div class="card">
-          <h3>مأموریت</h3>
-          <p>گسترش آموزش موسیقی با رویکردی مدرن و الهام‌گرفته از ریشه‌های ایرانی.</p>
-        </div>
-        <div class="card">
-          <h3>اساتید</h3>
-          <p>گروهی از مدرسین حرفه‌ای با سابقهٔ اجرا و تدریس. (نام‌ها و رزومه‌ها را اینجا وارد کنید)</p>
-        </div>
-        <div class="card">
-          <h3>فضای آموزشی</h3>
-          <p>اتاق‌های تمرین استاندارد، استودیوی کوچک ضبط و سالن اجرا برای رویدادهای هنرجویی.</p>
-        </div>
-      </div>
-    </section>
-
-    <!-- Classes -->
-    <section id="classes">
-      <h2>کلاس‌ها و دوره‌ها</h2>
-      <div class="grid">
-        <div class="card">
-          <h3>گیتار کلاسیک</h3>
-          <p>از مقدماتی تا پیشرفته — تکنیک، رپرتوار و تئوری.</p>
-        </div>
-        <div class="card">
-          <h3>گیتار الکتریک</h3>
-          <p>ریتم، لید، بداهه‌نوازی و سبک‌های راک/بلوز.</p>
-        </div>
-        <div class="card">
-          <h3>سلفژ و هارمونی</h3>
-          <p>خوانش، دیکتهٔ موسیقی و مبانی آهنگسازی.</p>
-        </div>
-      </div>
-    </section>
-
-    <!-- Gallery -->
-    <section id="gallery">
-      <h2>گالری عکس و ویدئو</h2>
-      <p style="margin-bottom:14px;color:var(--muted)">فایل‌های خود را در پوشهٔ <b>media/</b> قرار دهید و مسیرها را در بخش <b>MEDIA</b> داخل جاوااسکریپت تغییر دهید.</p>
-      <div class="gallery-grid" id="imageGrid"></div>
-      <div class="gallery-grid" id="videoGrid" style="margin-top:16px"></div>
-    </section>
-
-    <!-- Contact -->
-    <section id="contact">
-      <h2>تماس با ما</h2>
-      <div class="contact-cards">
-        <form id="contactForm">
-          <input name="name" placeholder="نام و نام خانوادگی" required>
-          <input name="phone" placeholder="شماره تماس" required>
-          <input name="email" placeholder="ایمیل (اختیاری)">
-          <textarea name="message" placeholder="پیام شما..."></textarea>
-          <button class="btn" type="submit">ارسال</button>
-          <small id="formNote" style="color:var(--muted)">در نسخهٔ نمونه، پیام در کنسول ذخیره می‌شود. برای اتصال به ایمیل/سرور پیام دهید.</small>
-        </form>
-        <div class="card">
-          <h3>اطلاعات تماس</h3>
-          <p>تلفن: <a href="tel:+989000000000">+98 900 000 0000</a></p>
-          <p>اینستاگرام: <a href="#">@avaye_zaryab</a></p>
-          <p>نشانی: تهران، ...</p>
-          <div style="border:1px solid rgba(202,165,94,.2);border-radius:12px;height:220px;display:flex;align-items:center;justify-content:center;margin-top:8px;color:var(--muted)">
-            پیش‌نمایش نقشه (اینجا iFrame نقشه قرار دهید)
+  <main class="container">
+    <!-- خانه -->
+    <section id="home" class="route">
+      <div class="hero">
+        <div class="reveal">
+          <h2>آکادمی موسیقی آوای زریاب</h2>
+          <p class="lead">آموزش تخصصی <strong>گیتار</strong> و <strong>آواز</strong> با اساتید حرفه‌ای. هر هفته اجراها و تمرین‌های هنرجویان و اساتید را در گالری دنبال کنید.</p>
+          <div class="chips">
+            <span class="chip">کلاس‌های خصوصی و گروهی</span>
+            <span class="chip">ضبط ویدئوهای آموزشی</span>
+            <span class="chip">اجرای زنده کارگاهی</span>
           </div>
+        </div>
+        <div class="card reveal">
+          <video src="" poster="" controls muted style="width:100%" aria-label="ویدئوی معرفی" id="introVideo"></video>
+          <small style="color:#9fb0c8">برای ویدئوی معرفی، آدرس فایل را در data.introVideoUrl تنظیم کنید.</small>
+        </div>
+      </div>
+
+      <div class="grid">
+        <div class="card col-4 reveal"><h3>چرا آوای زریاب؟</h3><p>رویکرد آموزشی منعطف، پیگیری پیشرفت هنرجویان و انتشار هفتگی آثار.</p></div>
+        <div class="card col-4 reveal"><h3>سبک‌ها</h3><p>پاپ، کلاسیک، فلامنکو، و تکنیک‌های صداسازی و آواز.</p></div>
+        <div class="card col-4 reveal"><h3>فضای تمرین</h3><p>اتاق آکوستیک، ساز و تجهیزات ضبط برای تمرین و تولید محتوا.</p></div>
+      </div>
+    </section>
+
+    <!-- استادان -->
+    <section id="teachers" class="route" hidden>
+      <h2 class="reveal">معرفی استادان</h2>
+      <div id="teachersList" class="grid"></div>
+    </section>
+
+    <!-- گالری کلی -->
+    <section id="gallery" class="route" hidden>
+      <h2 class="reveal">گالری آثار</h2>
+      <p class="lead reveal">آخرین عکس‌ها و ویدئوهای منتشر شده توسط اساتید و هنرجویان</p>
+      <div id="globalGallery" class="gallery"></div>
+    </section>
+
+    <!-- تماس -->
+    <section id="contact" class="route" hidden>
+      <h2 class="reveal">ثبت‌نام و تماس</h2>
+      <div class="grid">
+        <div class="card col-6 reveal">
+          <h3>فرم سریع</h3>
+          <form onsubmit="event.preventDefault(); alert('پیام شما ثبت شد. با شما تماس می‌گیریم.'); this.reset();">
+            <label>نام<br><input required placeholder="نام و نام خانوادگی" style="width:100%; padding:10px; border-radius:12px; border:1px solid rgba(196,162,85,.35); background:#0b1526; color:#e9eef7"></label><br><br>
+            <label>شماره تماس<br><input required placeholder="09xxxxxxx" style="width:100%; padding:10px; border-radius:12px; border:1px solid rgba(196,162,85,.35); background:#0b1526; color:#e9eef7"></label><br><br>
+            <label>رشته موردنظر<br>
+              <select style="width:100%; padding:10px; border-radius:12px; border:1px solid rgba(196,162,85,.35); background:#0b1526; color:#e9eef7">
+                <option>گیتار</option>
+                <option>آواز</option>
+              </select>
+            </label><br><br>
+            <button class="mute-btn" style="background:var(--accent); color:#0a0f1c; border:none">ارسال</button>
+          </form>
+        </div>
+        <div class="card col-6 reveal">
+          <h3>اطلاعات تماس</h3>
+          <ul>
+            <li>تلفن: 09xx xxx xxxx</li>
+            <li>اینستاگرام: <a href="#">@avaye_zaryab</a></li>
+            <li>آدرس: ...</li>
+          </ul>
+          <p class="lead">ساعات پاسخ‌گویی: ۱۰ تا ۱۸</p>
         </div>
       </div>
     </section>
   </main>
 
+  <!-- لایت‌باکس -->
+  <div class="lightbox" id="lightbox" aria-hidden="true">
+    <div class="inner">
+      <button class="navbtn prev" id="lbPrev">قبلی</button>
+      <button class="navbtn next" id="lbNext">بعدی</button>
+      <button class="close" id="lbClose">بستن ✕</button>
+      <div id="lbContent"></div>
+    </div>
+  </div>
+
   <footer>
-    <div style="max-width:1200px;margin:auto;display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap">
-      <div>© <span id="year"></span> آکادمی موسیقی آوای زریاب</div>
-      <div>ساخته‌شده با ❤️ و نت‌های گیتار</div>
+    <div class="container footerbar">
+      <small>© آوای زریاب – آکادمی موسیقی</small>
+      <button class="mute-btn" id="toggleSound">🔈 صدا: روشن/خاموش</button>
     </div>
   </footer>
 
-  <!-- Floating sound toggle -->
-  <button id="soundToggle" class="sound-toggle" title="فعالسازی/غیرفعالسازی صدای اسکرول" aria-pressed="false">
-    🎸 فعال‌سازی صدا
-  </button>
-
   <script>
-    // =============================
-    // ۱) منوی موبایل
-    // =============================
-    const menuBtn = document.querySelector('.menu-toggle');
-    const menu = document.getElementById('menu');
-    menuBtn?.addEventListener('click', ()=> menu.classList.toggle('open'));
+  // ====================== داده‌ها =======================
+  const data = {
+    introVideoUrl: "", // اگر ویدئوی معرفی دارید اینجا آدرس بدهید
+    teachers:[
+      {
+        id:"soheil",
+        name:"سهیل معنوی",
+        role:"مربی گیتار",
+        avatar:"media/soheil_avatar.jpg", // اختیاری
+        bio:"آموزش گیتار (کلاسیک/پاپ) و تئوری موسیقی.",
+        photos:[
+          // "media/soheil_1.jpg",
+        ],
+        videos:[
+          // "media/soheil_1.mp4",
+        ]
+      },
+      {
+        id:"farideh",
+        name:"فریده عنایتی",
+        role:"مربی آواز",
+        avatar:"media/farideh_avatar.jpg",
+        bio:"تکنیک‌های صداسازی، تنفس صحیح و اجرای قطعات.",
+        photos:[
+          // "media/farideh_1.jpg",
+        ],
+        videos:[
+          // "media/farideh_1.mp4",
+        ]
+      }
+    ]
+  };
 
-    // سال فوتر
-    document.getElementById('year').textContent = new Date().getFullYear();
+  // ====================== روتینگ ساده (چندصفحه‌ای) =======================
+  const routes = Array.from(document.querySelectorAll('.route'));
+  const navLinks = Array.from(document.querySelectorAll('[data-route]'));
+  function setActive(hash){
+    const target = (hash||location.hash||'#home');
+    routes.forEach(s=>s.hidden = ('#'+s.id)!==target);
+    navLinks.forEach(a=> a.classList.toggle('active', a.getAttribute('href')===target));
+  }
+  window.addEventListener('hashchange', ()=> setActive(location.hash));
+  setActive(location.hash||'#home');
 
-    // =============================
-    // ۲) داده‌های قابل ویرایشِ گالری (مسیر فایل‌ها را تغییر دهید)
-    // =============================
-    const MEDIA = {
-      images: [
-        // نمونه: فایل‌های خود را در پوشه media قرار دهید
-        'media/img1.jpg',
-        'media/img2.jpg',
-        'media/img3.jpg',
-        'media/img4.jpg'
-      ],
-      videos: [
-        // ویدئوهای MP4/H.264 برای سازگاری بهتر
-        'media/video1.mp4',
-        'media/video2.mp4'
-      ]
-    };
+  // ویدئوی معرفی
+  if(data.introVideoUrl){
+    const v = document.getElementById('introVideo');
+    v.src = data.introVideoUrl; v.load();
+  }
 
-    function renderGallery(){
-      const imageGrid = document.getElementById('imageGrid');
-      const videoGrid = document.getElementById('videoGrid');
-      imageGrid.innerHTML = '';
-      videoGrid.innerHTML = '';
-      MEDIA.images.forEach(src => {
-        const item = document.createElement('div');
-        item.className = 'media-item';
-        const img = document.createElement('img');
-        img.loading = 'lazy';
-        img.alt = 'گالری آوای زریاب';
-        img.src = src; // مسیر عکس
-        item.appendChild(img);
-        imageGrid.appendChild(item);
-      });
-      MEDIA.videos.forEach(src => {
-        const item = document.createElement('div');
-        item.className = 'media-item';
-        const video = document.createElement('video');
-        video.controls = true;
-        video.preload = 'none';
-        video.src = src; // مسیر ویدئو
-        item.appendChild(video);
-        videoGrid.appendChild(item);
-      });
-    }
-    renderGallery();
-
-    // =============================
-    // ۳) فرم تماس (نمونه)
-    // =============================
-    const form = document.getElementById('contactForm');
-    form.addEventListener('submit', (e)=>{
-      e.preventDefault();
-      const data = Object.fromEntries(new FormData(form).entries());
-      console.log('[Contact Form]\n', data);
-      document.getElementById('formNote').textContent = 'پیام شما دریافت شد (نمونه). برای اتصال به ایمیل/بات اطلاع دهید.';
-      form.reset();
+  // ====================== رندر استادان و گالری =======================
+  function renderTeachers(){
+    const wrap = document.getElementById('teachersList');
+    wrap.innerHTML = '';
+    data.teachers.forEach(t=>{
+      const card = document.createElement('div');
+      card.className = 'card col-6 reveal';
+      card.innerHTML = `
+        <div class="teacher">
+          <img class="avatar" src="${t.avatar||'https://unavatar.io/github/'}" alt="${t.name}">
+          <div>
+            <h3>${t.name}</h3>
+            <div class="chips">
+              <span class="chip">${t.role}</span>
+              <a class="chip" href="#teacher-${t.id}">گالری اختصاصی</a>
+            </div>
+            <p class="lead">${t.bio||''}</p>
+          </div>
+        </div>
+        <div id="teacher-${t.id}" style="margin-top:10px">
+          ${buildGalleryHTML(t.photos, t.videos)}
+        </div>
+      `;
+      wrap.appendChild(card);
     })
+    observeReveal();
+  }
 
-    // =============================
-    // ۴) صدای نت هنگام اسکرول (وب‌اودیو)
-    // - برای رعایت محدودیت مرورگرها، باید با یک تعامل کاربر فعال شود.
-    // - دکمه‌ی پایین-چپ برای فعال/غیرفعال کردن است.
-    // =============================
-    let audioCtx = null;
-    let soundEnabled = false;
-    const toggleBtn = document.getElementById('soundToggle');
+  function buildGalleryHTML(photos=[], videos=[]) {
+    const items = [];
+    photos.forEach((src,i)=> items.push(`<figure><img class="thumb" data-type="img" data-idx="${i}" src="${src}" alt="photo"></figure>`));
+    videos.forEach((src,i)=> items.push(`<figure><video class="thumb" data-type="vid" data-idx="${i+photos.length}" src="${src}" preload="metadata"></video></figure>`));
+    if(!items.length) return '<small style="color:#9fb0c8">برای این استاد هنوز رسانه‌ای افزوده نشده است.</small>';
+    return `<div class="gallery">${items.join('')}</div>`;
+  }
 
-    function initAudio(){
-      if(!audioCtx){ audioCtx = new (window.AudioContext || window.webkitAudioContext)(); }
+  function renderGlobalGallery(){
+    const g = document.getElementById('globalGallery');
+    const photos = data.teachers.flatMap(t=> t.photos.map(p=>({type:'img',src:p})));
+    const videos = data.teachers.flatMap(t=> t.videos.map(v=>({type:'vid',src:v})));
+    const all = [...videos, ...photos];
+    g.innerHTML = all.length ? all.map((m,i)=> m.type==='img' ?
+      `<figure><img class="thumb" data-group="global" data-type="img" data-idx="${i}" src="${m.src}"></figure>`:
+      `<figure><video class="thumb" data-group="global" data-type="vid" data-idx="${i}" src="${m.src}" preload="metadata"></video></figure>`
+    ).join('') : '<small style="color:#9fb0c8">هنوز محتوایی در گالری عمومی ثبت نشده است.</small>';
+  }
+
+  renderTeachers();
+  renderGlobalGallery();
+
+  // ====================== انیمیشن ظاهر شدن با IntersectionObserver =======================
+  function observeReveal(){
+    const els = document.querySelectorAll('.reveal');
+    const io = new IntersectionObserver((entries)=>{
+      entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('inview'); io.unobserve(e.target);} });
+    }, {threshold:.15});
+    els.forEach(el=> io.observe(el));
+  }
+  observeReveal();
+
+  // ====================== لایت‌باکس ساده =======================
+  const lb = document.getElementById('lightbox');
+  const lbContent = document.getElementById('lbContent');
+  const lbPrev = document.getElementById('lbPrev');
+  const lbNext = document.getElementById('lbNext');
+  const lbClose = document.getElementById('lbClose');
+  let currentGroup = null; let currentIndex = 0; let currentItems = [];
+
+  function openLightbox(group, idx){
+    const makeItems = ()=>{
+      if(group==='global'){
+        const p = data.teachers.flatMap(t=> t.photos.map(src=>({type:'img',src})));
+        const v = data.teachers.flatMap(t=> t.videos.map(src=>({type:'vid',src})));
+        return [...v, ...p];
+      }
+      // group = teacher-<id>
+      const id = group.replace('teacher-','');
+      const t = data.teachers.find(x=> x.id===id) || {photos:[], videos:[]};
+      const p = t.photos.map(src=>({type:'img',src}));
+      const v = t.videos.map(src=>({type:'vid',src}));
+      return [...v, ...p];
     }
+    currentGroup = group; currentIndex = idx; currentItems = makeItems();
+    renderLB(); lb.classList.add('open'); lb.setAttribute('aria-hidden','false');
+  }
+  function renderLB(){
+    const item = currentItems[currentIndex];
+    if(!item){ lb.classList.remove('open'); return; }
+    lbContent.innerHTML = item.type==='img' ? `<img src="${item.src}" alt="image">` : `<video src="${item.src}" controls autoplay></video>`;
+  }
+  function step(delta){
+    currentIndex = (currentIndex + delta + currentItems.length) % currentItems.length; renderLB();
+  }
+  lbPrev.addEventListener('click', ()=> step(-1));
+  lbNext.addEventListener('click', ()=> step(1));
+  lbClose.addEventListener('click', ()=> {lb.classList.remove('open'); lb.setAttribute('aria-hidden','true'); lbContent.innerHTML='';});
+  document.addEventListener('keydown', (e)=>{
+    if(!lb.classList.contains('open')) return;
+    if(e.key==='Escape') lbClose.click();
+    if(e.key==='ArrowRight') step(1);
+    if(e.key==='ArrowLeft') step(-1);
+  });
 
-    toggleBtn.addEventListener('click', ()=>{
-      initAudio();
-      soundEnabled = !soundEnabled;
-      toggleBtn.dataset.active = soundEnabled ? 'true' : 'false';
-      toggleBtn.textContent = soundEnabled ? '🎸 صدا فعال است' : '🎸 فعال‌سازی صدا';
-    });
+  document.addEventListener('click', (e)=>{
+    const el = e.target.closest('.thumb');
+    if(!el) return;
+    const group = el.dataset.group || el.closest('[id^="teacher-"]').id;
+    const idx = parseInt(el.dataset.idx||'0',10);
+    openLightbox(group, idx);
+  });
 
-    // گام‌های پنتاتونیک مینور (E minor pentatonic) برای حس گیتاری
-    const scaleMidi = [40, 43, 45, 47, 50, 52, 55, 59];
-    let noteIndex = 0;
-    let lastT = 0;
+  // ====================== صدای نت هنگام اسکرول =======================
+  let audioCtx; let allowSound = true; let lastY = window.scrollY;
+  function ensureAudio(){ if(!audioCtx){ audioCtx = new (window.AudioContext||window.webkitAudioContext)(); } }
+  function pluck(freq=220){
+    if(!allowSound) return; ensureAudio(); const now = audioCtx.currentTime;
+    const osc = audioCtx.createOscillator(); const gain = audioCtx.createGain(); const biquad = audioCtx.createBiquadFilter();
+    biquad.type = 'lowpass'; biquad.frequency.value = 3000; osc.type = 'triangle'; osc.frequency.value = freq;
+    gain.gain.setValueAtTime(0.001, now); gain.gain.exponentialRampToValueAtTime(0.9, now+0.005); gain.gain.exponentialRampToValueAtTime(0.0001, now+0.35);
+    osc.connect(biquad).connect(gain).connect(audioCtx.destination); osc.start(now); osc.stop(now+0.4);
+  }
+  const scale = [196,220,247,262,294,330,349,392];
+  window.addEventListener('scroll', ()=>{
+    const dy = Math.abs(window.scrollY - lastY); lastY = window.scrollY; if(dy<6) return;
+    const idx = Math.min(scale.length-1, Math.floor((dy%240)/30)); pluck(scale[idx]);
+  }, {passive:true});
+  document.getElementById('toggleSound').addEventListener('click',()=>{
+    allowSound = !allowSound; document.getElementById('toggleSound').classList.toggle('muted', !allowSound);
+  });
 
-    function midiToFreq(midi){ return 440 * Math.pow(2, (midi-69)/12); }
-
-    function pluck(freq){
-      if(!audioCtx) return;
-      const now = audioCtx.currentTime;
-
-      // منبع صدای کوتاه (Karplus-Strong ساده)
-      const noise = audioCtx.createBufferSource();
-      const buffer = audioCtx.createBuffer(1, audioCtx.sampleRate * 0.2, audioCtx.sampleRate);
-      const data = buffer.getChannelData(0);
-      for(let i=0;i<data.length;i++){ data[i] = (Math.random()*2-1) * (1-i/data.length); }
-      noise.buffer = buffer;
-
-      const delay = audioCtx.createDelay();
-      delay.delayTime.setValueAtTime(1/freq, now);
-
-      const feedback = audioCtx.createGain();
-      feedback.gain.setValueAtTime(0.35, now);
-
-      const filter = audioCtx.createBiquadFilter();
-      filter.type = 'lowpass';
-      filter.frequency.setValueAtTime(2000, now);
-
-      const out = audioCtx.createGain();
-      out.gain.setValueAtTime(0.0, now);
-      out.gain.linearRampToValueAtTime(0.6, now + 0.01);
-      out.gain.exponentialRampToValueAtTime(0.0001, now + 0.8);
-
-      noise.connect(delay);
-      delay.connect(filter);
-      filter.connect(feedback);
-      feedback.connect(delay); // بازخورد
-      filter.connect(out);
-      out.connect(audioCtx.destination);
-
-      noise.start(now);
-      noise.stop(now + 0.2);
-    }
-
-    window.addEventListener('scroll', ()=>{
-      if(!soundEnabled || !audioCtx) return;
-      const t = Date.now();
-      if(t - lastT < 120) return; // محدودیتِ دفعات اجرا
-      lastT = t;
-
-      // هر اسکرول پایین -> یک نت بعدی
-      const midi = scaleMidi[noteIndex % scaleMidi.length];
-      const freq = midiToFreq(midi);
-      pluck(freq);
-      noteIndex++;
-    }, {passive:true});
   </script>
 </body>
 </html>
